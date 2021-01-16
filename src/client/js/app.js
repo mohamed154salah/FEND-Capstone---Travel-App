@@ -24,10 +24,10 @@ function handleSubmit(event) {
 
   console.log("::: Form Submitted :::");
 
-  postData("http://localhost:8081/api", { url: formurl }).then(function (res) {
-    document.getElementById("entryHolder").innerHTML = ` ${res.countryName}`;
-    document.getElementById("date").innerHTML = ` ${res.lat}`;
-    document.getElementById("temp").innerHTML = ` ${res.lng}`;
+  postData("http://localhost:8080/api", { url: formurl }).then(function (res) {
+    document.getElementById("date").innerHTML = `${res.geonames[0].countryName}`;
+    document.getElementById("content").innerHTML = `${res.geonames[0].lat}`;
+    document.getElementById("temp").innerHTML = `${res.geonames[0].lng}`;
   });
 }
 

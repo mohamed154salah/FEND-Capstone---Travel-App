@@ -16,8 +16,8 @@ app.use(express.static('dist'))
 
 console.log(__dirname)
 const baseURL = 'http://api.geonames.org/search?'
-const username = process.env.username
-console.log(`Your API Key is ${process.env.username}`);
+const username = process.env.API_ID
+console.log(`Your API Key is ${process.env.API_ID}`);
 let userInput = []
 app.get('/', function (req, res) {
      res.sendFile('dist/index.html')
@@ -33,7 +33,7 @@ app.get('/test', function (req, res) {
 app.post('/api', async function(req, res) {
     userInput = req.body.url;
     console.log(`You entered: ${userInput}`);
-    const apiURL = `${baseURL}q=${userInput}&username=${username}`
+    const apiURL = `${baseURL}q=${userInput}&username=${username}&type=json&maxRows=1`
 
     const response = await fetch(apiURL)
     const data = await response.json()
@@ -41,6 +41,6 @@ app.post('/api', async function(req, res) {
     res.send(data)
 
 })
-app.listen(8081, function () {
-    console.log('Example app listening on port 8081!')
+app.listen(8080, function () {
+    console.log('Example app listening on port 8080!')
 })
